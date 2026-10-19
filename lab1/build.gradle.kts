@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.4.0"
     application
+    java
 }
 
 group = "com.fluffyspire.pollen"
