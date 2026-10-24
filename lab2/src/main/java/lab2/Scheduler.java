@@ -38,7 +38,6 @@ public final class Scheduler {
             try {
                 body.run();
             } catch (Exception e) {
-                e.printStackTrace();
             }
             state.isAlive = false;
             taskSemaphore.release();
@@ -128,14 +127,13 @@ public final class Scheduler {
         var scheduler = currentInstance;
         var threadName = scheduler.localState.get().threadLabel();
         scheduler.heldLocks.add(threadName + ":" + name);
-        logOp("acquire " + name);
+        logOp("lock " + name);
     }
 
     public static void releaseLock(String name) {
         var scheduler = currentInstance;
         var threadName = scheduler.localState.get().threadLabel();
         scheduler.heldLocks.remove(threadName + ":" + name);
-        logOp("release " + name);
     }
 
     /** Ждать, пока cond не станет true. До этого поток не попадает в enabled. */

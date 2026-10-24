@@ -20,7 +20,7 @@ public final class Shared<T> {
     /** Запись с паузой перед ней. */
     public void set(T v) {
         Scheduler.interruptPoint();
-        Scheduler.logOp(name + " = " + value);
+        Scheduler.logOp(name + " = " + v);
         value = v;
     }
 

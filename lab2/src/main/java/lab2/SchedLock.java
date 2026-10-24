@@ -14,9 +14,6 @@ public final class SchedLock {
 
     /** Пауза; если лок занят — ждать, не участвуя в выборе; затем стать владельцем. */
     public void lock() {
-        if (owner != null) {
-            Scheduler.logOp("wait " + name);
-        }
         Scheduler.await(() -> owner == null);
         owner = Thread.currentThread();
         Scheduler.acquireLock(name);

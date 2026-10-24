@@ -75,9 +75,8 @@ public final class Strategies {
         }
 
         public int pick(List<Integer> enabled, int last) {
-            if (switches == bound) {
+            if (switches >= bound) {
                 if (enabled.contains(last)) return last;
-                else return enabled.get(0);
             }
 
             var nextAlternative = 0;
@@ -93,7 +92,7 @@ public final class Strategies {
             currentDepth += 1;
 
             var nextId = enabled.get(nextAlternative);
-            switches += last >= 0 && nextId != last ? 1 : 0;
+            switches += last >= 0 && nextId != last && (enabled.contains(last)) ? 1 : 0;
 
             return nextId;
         }
